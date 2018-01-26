@@ -15,10 +15,11 @@ import { AddEditDetailsComponent } from './master/class-subject-details/add-edit
 import { ViewDetailsComponent } from './master/class-subject-details/view-details/view-details.component';
 import { StudentTimeTableComponent } from './time-table/student-time-table/student-time-table.component';
 import { TeacherTimeTableComponent } from './time-table/teacher-time-table/teacher-time-table.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: DashboardComponent },
   { path: 'login', component: LoginComponent }
  ];
 
@@ -35,6 +36,7 @@ const routes: Routes = [
      ViewDetailsComponent,
      StudentTimeTableComponent,
      TeacherTimeTableComponent,
+     DashboardComponent,
   ],
   imports: [
     BrowserModule,
