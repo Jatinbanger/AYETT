@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { MasterComponent } from './master/master.component';
 import { TimeTableComponent } from './time-table/time-table.component';
@@ -16,6 +16,10 @@ import { ViewDetailsComponent } from './master/class-subject-details/view-detail
 import { StudentTimeTableComponent } from './time-table/student-time-table/student-time-table.component';
 import { TeacherTimeTableComponent } from './time-table/teacher-time-table/teacher-time-table.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+
 
 
 const routes: Routes = [
@@ -46,9 +50,12 @@ const routes: Routes = [
     MatCardModule, 
     MatMenuModule, 
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 
