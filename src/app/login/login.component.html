@@ -1,45 +1,37 @@
 
+<div >
+    <div class="jumbotron text-center">
+        <h1>Public School</h1>
+        <p>Where exellence is Challenged!</p>
+    </div>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-4">
 
-        <div class='header'>
-            <br><br>
-            <h2>Public School</h2>
-
-        </div>
-
-        <div class="login-container">
-
-            <!-- <h4>Login</h4>
-            <form action="" [formGroup]="loginForm">
-            <label>User Name:</label>
-            <input class='form-control' formControlName='userName' title='User Name' placeholder='User Name' required>
-            <br/><br/>
-            <label>Password:</label>
-            <input class='form-control' formControlName='password' title='Password' placeholder='Password'>
-            <br/><br/>
-            <input type='button' value='login'/>
-            <br/><br/>
-        </form> -->
-
-        <form class="login-form" [formGroup]="loginForm">
-                <mat-form-field class="loginss-full-width">
-                  <input matInput  class='form-control' formControlName='userName' placeholder='User Name' required>
-                  <mat-error *ngIf="userName.hasError('required')">
-                   User Name is <strong>required</strong>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                 </mat-form-field>
-                    
-        </form>
+                <h3 class="text-center">Login</h3>
+                <br>
+                <div [formGroup]="loginForm">
+                <div class="form-group" >
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" formControlName="email" required>
+                </div>
+                <div *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine">
+                    <div style="color:red;text-align: right;" [hidden]="!loginForm.controls['email'].errors.required">Email is required.</div>
+                    <div style="color:red;text-align: right;" [hidden]="!loginForm.controls['email'].errors.patternInvalid">Email is invalid.</div>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" formControlName="password" >
+                </div>
+                <div *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine" class="error-msg">
+                    <div style="color:red;text-align: right;" [hidden]="!loginForm.controls['password'].errors.required">Password is required.</div>
+                  </div>
+                <button type="button" class="btn btn-block" [disabled]="loginForm.invalid" (click)="login()">Login</button>
+            </div>
+            </div>
 
         </div>
-
-        <div class='footer'>
-
-            
-
-        </div>
+    </div>
+</div>
 

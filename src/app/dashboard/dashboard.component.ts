@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceService } from '../service.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,17 +10,20 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+  public loginClick:boolean;
   
-  constructor(private router: Router){
+  constructor(private bhushanService: ServiceService, private router: Router){
 
 
   }
   
   ngOnInit() {
+    this.loginClick = true;
+    this.bhushanService.afterLogin = false;
   }
 
   navigateToLogin() {
-
+    this.loginClick = false
     this.router.navigate(['login']);
     
   }

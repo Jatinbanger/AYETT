@@ -1,4 +1,12 @@
+<div *ngIf="bhushanService.afterLogin">
 
+    <app-navbar>
+
+    </app-navbar>
+
+</div>
+
+<div *ngIf="loginClick">
       <mat-toolbar color="" >
           <mat-toolbar-row>
               <span>Aye Solution</span>
@@ -25,4 +33,7 @@
   
               </div>
               <br><br><br><br><br><br><br><br>
-          </div>   
+     
+            </div>  
+     </div>        
+          <router-outlet></router-outlet>

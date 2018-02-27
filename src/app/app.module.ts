@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Component } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher, MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -19,12 +20,24 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
-
+import { AdjustmentComponent } from './adjustment/adjustment.component';
+import { AddAdjustmentsComponent } from './adjustment/add-adjustments/add-adjustments.component';
+import { ViewResultComponent } from './adjustment/view-result/view-result.component';
+import { SearchPipe } from './searchPipe';
+import { HomeComponent } from './home/home.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ServiceService } from  './service.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'uploadFiles', component: UploadFilesComponent,canActivate: [AuthGuard]},
+  { path: 'adjustments', component: AdjustmentComponent, canActivate: [AuthGuard] },
+  { path: 'adjustments/viewAdjustments', component: ViewResultComponent, canActivate: [AuthGuard] }
  ];
 
 @NgModule({
@@ -41,10 +54,18 @@ const routes: Routes = [
      StudentTimeTableComponent,
      TeacherTimeTableComponent,
      DashboardComponent,
+     AdjustmentComponent,
+     AddAdjustmentsComponent,
+     ViewResultComponent,
+     SearchPipe,
+     HomeComponent,
+     UploadFilesComponent,
+     NavbarComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    NgbModule.forRoot(),
     BrowserAnimationsModule,
     MatButtonModule, 
     MatCardModule, 
@@ -53,10 +74,13 @@ const routes: Routes = [
     MatIconModule,
     MatInputModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
+    
   ],
-  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, AuthService, ServiceService, HttpClientModule,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+  bootstrap: [AppComponent],
+  exports : [SearchPipe]
 })
 
 
