@@ -5,6 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router'
 import { ServiceService } from '../service.service';
+import { TokenPayLoad } from '../app-interface';
+import { AuthenticationService } from '../auth/authentication.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,8 +20,13 @@ export class LoginComponent implements OnInit {
     middle: false,
     right: false
   };
+  tokenPayLoad : TokenPayLoad = {
+    email:'',
+    password:''
+  }
+
   public error: string;
-  constructor(private service: ServiceService, private router: Router, private fb: FormBuilder) {
+  constructor(private authService: AuthenticationService, private service: ServiceService, private router: Router, private fb: FormBuilder) {
     this.createForm();
    }
 
@@ -37,13 +45,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (this.loginForm.controls.email.value == '') {
 
-    }
-   
-    this.service.afterLogin = true;
-    this.router.navigate(['/home']);
-
+  this.tokenPayLoad.email = this.loginForm.controls.email.value;
+  this.tokenPayLoad.password = this.loginForm.controls.password.value;    
+    this.authService.loginMe(this.tokenPayLoad).subscribe(() => {
+      this.router.navigate(['/home']);
+    },(err)=> {
+      console.error(err);
+    });
+  //   this.service.afterLogin = true;
   }
 
   patternValidator(regexp: RegExp): ValidatorFn {

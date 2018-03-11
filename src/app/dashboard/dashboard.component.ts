@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
   navigateToLogin() {
     this.loginClick = false
+    this.bhushanService.afterLogin = true;
     this.router.navigate(['login']);
     
   }

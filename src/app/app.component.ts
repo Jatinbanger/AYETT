@@ -39,22 +39,7 @@ export class AppComponent {
     });
   }
 
-  onClassTTFileChange(event) {
-    if (event.target.files.length > 0) {
-      let file = event.target.files[0];
-      this.form.get('classTT').setValue(file);
-    }
-  }
-
-  onTeacherTTFileChange(event) {
-    if (event.target.files.length > 0) {
-      let file = event.target.files[0];
-      this.form.get('teacherTT').setValue(file);
-      console.log(file);
-      
-    }
-  }
-
+  
   private prepareSave(): any {
     let input = new FormData();
     input.append('teacherCsvData', this.form.get('classTT').value);

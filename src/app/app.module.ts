@@ -29,15 +29,15 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServiceService } from  './service.service';
-import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth/auth.guard';
+import { AuthenticationService } from './auth/authentication.service';
 
 const routes: Routes = [
+  {path : '', component: DashboardComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'uploadFiles', component: UploadFilesComponent,canActivate: [AuthGuard]},
-  { path: 'adjustments', component: AdjustmentComponent, canActivate: [AuthGuard] },
-  { path: 'adjustments/viewAdjustments', component: ViewResultComponent, canActivate: [AuthGuard] }
+  { path: 'home', component: HomeComponent },
+  { path: 'uploadFiles', component: UploadFilesComponent},
+  { path: 'home/adjustments', component: AdjustmentComponent},
+  { path: 'adjustments/viewAdjustments', component: ViewResultComponent }
  ];
 
 @NgModule({
@@ -78,7 +78,7 @@ const routes: Routes = [
     ReactiveFormsModule
     
   ],
-  providers: [AuthGuard, AuthService, ServiceService, HttpClientModule,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+  providers: [AuthenticationService, ServiceService, HttpClientModule,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent],
   exports : [SearchPipe]
 })
