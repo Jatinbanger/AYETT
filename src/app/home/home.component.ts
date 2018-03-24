@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private router:Router, private serviceObj: ServiceService) { }
 
   ngOnInit() {
+    this.serviceObj.haveAdjustments = false;
     this.serviceObj.previousAdjustment = new PreviousAdjustmentResponse();
     this.serviceObj.getPreviousAdjustments().subscribe((previousAdjustment: PreviousAdjustmentResponse)  => {
 

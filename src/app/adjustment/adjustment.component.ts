@@ -224,6 +224,7 @@ export class AdjustmentComponent implements OnInit {
       }
 
       }
+      this.serviceObj.haveAdjustments = true;      
       this.router.navigate(['adjustments','viewAdjustments']) 
     });
     

@@ -79,5 +79,16 @@ export class ServiceService {
 
   }
 
+  discardAdjustments() {
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('mean-token') })
+    };
+
+    return this.http.get('http://localhost:8080/adjustments/discardAdjustments', httpOptions);
+    
+
+  }
+
   
 }

@@ -23,6 +23,7 @@ export class EditAdjustmentsComponent implements OnInit {
   constructor(private serviceObj: ServiceService, private router: Router) { }
 
   ngOnInit() {
+    this.serviceObj.haveAdjustments = true;
     this.serviceObj.onEdit = true;
     this.serviceObj.getPreviousAdjustments().subscribe((previousAdjustmentData: PreviousAdjustmentResponse) => {
 
@@ -38,6 +39,18 @@ export class EditAdjustmentsComponent implements OnInit {
   loadAdjustment() {
 
     this.loadAdjustmentFlag = true;
+
+  }
+
+  discardAdjustments() {
+
+    this.serviceObj.discardAdjustments().subscribe(response => {
+
+      alert(response['status']);
+      this.serviceObj.haveAdjustments = false;
+      this.router.navigate(['home']);
+
+    })
 
   }
 
@@ -151,6 +164,7 @@ this.editGrid  = x;
       }
 
       }
+      this.serviceObj.haveAdjustments = true; 
       this.router.navigate(['adjustments','viewAdjustments']) 
     });
 
