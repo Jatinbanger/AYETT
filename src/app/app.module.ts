@@ -30,14 +30,18 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServiceService } from  './service.service';
 import { AuthenticationService } from './auth/authentication.service';
+import { ViewAdjustmentsComponent } from './adjustment/view-adjustments/view-adjustments.component';
+import { EditAdjustmentsComponent } from './adjustment/edit-adjustments/edit-adjustments.component';
 
 const routes: Routes = [
-  {path : '', component: DashboardComponent},
+  {path : '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'uploadFiles', component: UploadFilesComponent},
   { path: 'home/adjustments', component: AdjustmentComponent},
-  { path: 'adjustments/viewAdjustments', component: ViewResultComponent }
+  { path: 'adjustments/viewAdjustments', component: ViewResultComponent },
+  { path: 'home/viewAdjustments', component:ViewAdjustmentsComponent},
+  { path: 'home/editAdjustments', component:EditAdjustmentsComponent}
  ];
 
 @NgModule({
@@ -60,7 +64,9 @@ const routes: Routes = [
      SearchPipe,
      HomeComponent,
      UploadFilesComponent,
-     NavbarComponent
+     NavbarComponent,
+     ViewAdjustmentsComponent,
+     EditAdjustmentsComponent
   ],
   imports: [
     BrowserModule,

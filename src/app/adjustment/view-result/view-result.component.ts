@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ServiceService } from '../../service.service';
 @Component({
   selector: 'app-view-result',
   templateUrl: './view-result.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewResultComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serviceObj: ServiceService) { }
 
   ngOnInit() {
   }

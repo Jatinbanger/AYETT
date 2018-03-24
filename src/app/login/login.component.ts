@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     right: false
   };
   tokenPayLoad : TokenPayLoad = {
-    email:'',
+    username:'',
     password:''
   }
 
@@ -31,6 +31,11 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+
+      this.router.navigate(['home']);
+
+    }
 
   }
 
@@ -38,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = new FormGroup({
       // tslint:disable-next-line
-      email: new FormControl('', [Validators.required, this.patternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+      userName: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
 
@@ -46,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-  this.tokenPayLoad.email = this.loginForm.controls.email.value;
+  this.tokenPayLoad.username = this.loginForm.controls.userName.value;
   this.tokenPayLoad.password = this.loginForm.controls.password.value;    
     this.authService.loginMe(this.tokenPayLoad).subscribe(() => {
       this.router.navigate(['/home']);

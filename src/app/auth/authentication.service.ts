@@ -45,7 +45,8 @@ export class AuthenticationService {
   public isLoggedIn(): boolean {
     const user = this.getUserDetails();
     if (user) {
-      return user.exp > Date.now() / 1000;
+      return true;
+      //return user.exp > Date.now() / 1000;
     } else {
       return false;
     }
@@ -54,7 +55,7 @@ export class AuthenticationService {
 
   public loginMe(user: TokenPayLoad) {
 
-    const response = this.http.post('http://localhost:3000/api/login',user).pipe(map((data: TokenResponse) => {
+    const response = this.http.post('http://localhost:8080/api/login',user).pipe(map((data: TokenResponse) => {
       if (data.token) {
         this.saveToken(data.token);
       }
