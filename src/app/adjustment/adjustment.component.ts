@@ -30,7 +30,7 @@ export class AdjustmentComponent implements OnInit {
   public summary = '';
   
 
-  constructor(private router: Router, private http : HttpClient, private serviceObj :ServiceService) {
+  constructor(public router: Router, public http : HttpClient, public serviceObj :ServiceService) {
     this.serviceObj.getTeachersList().subscribe((data: TeacherList[]) => {
       this.teacherList = [];
       this.teacherList = data;
@@ -202,6 +202,8 @@ export class AdjustmentComponent implements OnInit {
     this.serviceObj.initiateAdjustments(obj).subscribe(adjustmentsResult => {
       adjustedAdjustmentMap = adjustmentsResult['adjustmentList'];
       failedAdjustmentMap = adjustmentsResult['failedAdjustmentList'];
+      this.serviceObj.successfullAdjustments = [];
+      this.serviceObj.failedAdjustments = [];
       let adjustedKeyList = Object.keys(adjustedAdjustmentMap);
       for (let j= 0 ; j < adjustedKeyList.length ; j++) {
 
@@ -232,7 +234,7 @@ export class AdjustmentComponent implements OnInit {
   }
   
   save(teacher,event) {
-    debugger;
+    
     if (!(this.selectedTeachers)) {
       this.selectedTeachers = [];
     } 
@@ -268,7 +270,7 @@ export class AdjustmentComponent implements OnInit {
   
 
   moreDetails(teacher) {
-    debugger;
+    
     if (teacher.reasonObj.type === 'parts') {
       teacher.reason = teacher.reasonObj.reason;
       teacher.type = teacher.reasonObj.type;

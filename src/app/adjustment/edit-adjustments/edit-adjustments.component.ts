@@ -20,7 +20,7 @@ export class EditAdjustmentsComponent implements OnInit {
   public editExceptionList = [];
 
 
-  constructor(private serviceObj: ServiceService, private router: Router) { }
+  constructor(public serviceObj: ServiceService, public router: Router) { }
 
   ngOnInit() {
     this.serviceObj.haveAdjustments = true;
@@ -76,7 +76,7 @@ this.editGrid  = x;
   }
 
   saveEdits(flag) {
-    debugger;
+    
     if (flag === 'absent') {
       this.editAbsentList = [];
       for (let i = 0 ; i < this.listToEdit.length ; i++)  {
@@ -143,6 +143,8 @@ this.editGrid  = x;
       adjustedAdjustmentMap = adjustmentsResult['adjustmentList'];
       failedAdjustmentMap = adjustmentsResult['failedAdjustmentList'];
       let adjustedKeyList = Object.keys(adjustedAdjustmentMap);
+      this.serviceObj.successfullAdjustments = [];
+      this.serviceObj.failedAdjustments = [];
       for (let j= 0 ; j < adjustedKeyList.length ; j++) {
 
       let adjustedTeacher = adjustedAdjustmentMap[adjustedKeyList[j]];

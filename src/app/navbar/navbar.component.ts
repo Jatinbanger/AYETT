@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   form: FormGroup;
   loading: boolean = false;
-  constructor(private serviceObj: ServiceService, private authService: AuthenticationService,private router: Router, private fb: FormBuilder, private http: HttpClient) {
+  constructor(public serviceObj: ServiceService, public authService: AuthenticationService,public router: Router, public fb: FormBuilder, public http: HttpClient) {
     this.createForm();
    }
 
@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  private prepareSave(): any {
+  public prepareSave(): any {
     let input = new FormData();
     input.append('studentTimeTable', this.form.get('classTT').value);
     input.append('teacherTimeTable', this.form.get('teacherTT').value);
@@ -60,7 +60,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    
     const formModel = this.prepareSave();
     this.loading = true;
     // this.http.post('apiUrl', formModel)

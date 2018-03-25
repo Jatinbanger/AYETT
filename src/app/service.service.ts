@@ -18,7 +18,7 @@ export class ServiceService {
   public afterLogin:boolean;
   public absentList: EditTeachers[] = [];
   public exceptionList: EditTeachers[] = [];
-  constructor(private http: HttpClient) { 
+  constructor(public http: HttpClient) { 
 
     this.afterLogin = false;
     

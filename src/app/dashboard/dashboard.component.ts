@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
 
   public loginClick:boolean;
   
-  constructor(private bhushanService: ServiceService, private router: Router){
+  constructor(public bhushanService: ServiceService, public router: Router){
 
 
   }

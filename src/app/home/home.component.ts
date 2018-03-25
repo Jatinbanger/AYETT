@@ -10,7 +10,7 @@ import { AdjustmentRecieve, PreviousAdjustmentResponse } from '../app-interface'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router, private serviceObj: ServiceService) { }
+  constructor(public router:Router, public serviceObj: ServiceService) { }
 
   ngOnInit() {
     this.serviceObj.haveAdjustments = false;

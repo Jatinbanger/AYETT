@@ -8,10 +8,10 @@ import { ServiceService } from '../../service.service';
 })
 export class ViewAdjustmentsComponent implements OnInit {
 
-  constructor(private serviceObj: ServiceService) { }
+  constructor(public serviceObj: ServiceService) { }
 
   ngOnInit() {
-    debugger;
+    
     let adjustedAdjustmentMap = [];
     let failedAdjustmentMap = [];
     if (this.serviceObj.previousAdjustment) {
