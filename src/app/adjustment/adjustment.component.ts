@@ -233,6 +233,8 @@ export class AdjustmentComponent implements OnInit {
 
   }
   
+
+  
   save(teacher,event) {
     
     if (!(this.selectedTeachers)) {

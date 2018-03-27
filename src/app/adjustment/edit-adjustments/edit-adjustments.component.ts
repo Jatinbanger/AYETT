@@ -54,6 +54,36 @@ export class EditAdjustmentsComponent implements OnInit {
 
   }
 
+  discardAllChanges() {
+    this.editAbsentList = [];
+    this.editExceptionList = [];
+    this.serviceObj.addAbsentList = [];
+    this.serviceObj.addExceptionList= [];
+   
+  }
+
+  discardValues(flag: string) {
+
+    if (flag === 'editAbsent') {
+      
+      this.editAbsentList = [];
+    
+    } else if (flag === 'editException') {
+
+      this.editExceptionList = [];
+
+    } else if (flag === 'addAbsent') {
+
+      this.serviceObj.addAbsentList = [];
+
+    } else if (flag === 'addException') {
+
+      this.serviceObj.addExceptionList= [];
+
+    }
+
+  }
+
   deleteAllData() {
 
     this.serviceObj.addAbsentList = [];
@@ -103,7 +133,11 @@ this.editGrid  = x;
 
   cancelAll(flag) {
 
-
+    if (flag === 'absent') {
+      this.editAbsentList = [];
+    } else {
+      this.editExceptionList = [];
+    }
 
   }
 

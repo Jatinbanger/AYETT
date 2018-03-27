@@ -90,5 +90,14 @@ export class ServiceService {
 
   }
 
+  getUserData() {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('mean-token') })
+    };
+
+    return this.http.get('http://localhost:8080/fetchData/getUserData', httpOptions);
+
+  }
+
   
 }
