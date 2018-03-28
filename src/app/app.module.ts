@@ -28,6 +28,9 @@ import { ServiceService } from  './service.service';
 import { AuthenticationService } from './auth/authentication.service';
 import { ViewAdjustmentsComponent } from './adjustment/view-adjustments/view-adjustments.component';
 import { EditAdjustmentsComponent } from './adjustment/edit-adjustments/edit-adjustments.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoaderService } from './shared/loader/loader.service';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const routes: Routes = [
   {path : '', component: LoginComponent},
@@ -59,6 +62,7 @@ const routes: Routes = [
      NavbarComponent,
      ViewAdjustmentsComponent,
      EditAdjustmentsComponent,
+     LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -73,12 +77,12 @@ const routes: Routes = [
     MatInputModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    MatProgressBarModule
   ],
-  providers: [AuthenticationService, ServiceService, HttpClientModule,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+  providers: [LoaderService,AuthenticationService, ServiceService, HttpClientModule,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent],
-  exports : [SearchPipe]
+  exports : [SearchPipe, LoaderComponent]
 })
 
 
