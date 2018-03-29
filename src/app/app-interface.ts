@@ -35,6 +35,8 @@ export class TeacherList {
   inTime: string;
   outTime: string;
   reasonObj: Reason
+  absentReason: string;
+  exceptionReason: string;
 
 }
 

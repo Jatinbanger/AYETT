@@ -28,14 +28,14 @@
               <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th>Select</th>
-        <th>Teacher Name</th>
-        <th>Reason</th>
-        <th>More Details</th>
+        <th width="5%">Select</th>
+        <th width="20%">Teacher Name</th>
+        <th width="30%">Reason</th>
+        <th width="50%">More Details</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let teacher of teacherList | searchString: searchTextAdj; let i=index " >
+      <tr *ngFor="let teacher of mainTeacherList | searchString: searchTextAdj; let i=index " >
         <td><div class="form-check">
             <label class="form-check-label">
               <input type="checkbox" class="form-check-input" value="" [checked]="(selectedTeachers.indexOf(teacher)>-1)?true:false"  (click)="save(teacher,$event)" />
@@ -50,10 +50,10 @@
                 </select>
               </div>
         </td>
-        <td><div *ngIf ="teacher.isParts">
-            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'1st Half')" >1st Half</label>
-            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'2nd Half')" >2nd Half</label>
-            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'Full')">Full</label>
+        <td><div *ngIf ="teacher.isParts" >
+            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'1st Half')" >&nbsp; 1st Half &nbsp;&nbsp; </label>
+            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'2nd Half')" >&nbsp; 2nd Half &nbsp;&nbsp;</label>
+            <label class="radio-inline"><input type="radio" name="{{i}}"   (change)="setPartValue(teacher,'Full')">&nbsp; Full</label>
 
         </div>
         <div *ngIf="teacher.isTime" >
@@ -99,7 +99,7 @@
 <td>{{teacher.teacherName}}</td>
 <td>
   <div class="form-group">
-    <input  type="text"  [(ngModel)]="teacher.reason" />
+    <input  type="text"  [(ngModel)]="teacher.exceptionReason" />
     </div>
 </td>
 <td>
@@ -139,7 +139,7 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime">
               <tr *ngFor="let teacher of selectedTeachers;let i=index">
                 <td>{{i+1}}</td>
                 <td>{{teacher.teacherName}}</td>
-                <td>{{ teacher.reason }}</td>
+                <td>{{ teacher.absentReason }}</td>
                 <td>
 
                   <div *ngIf="teacher.type === 'time'" >
@@ -176,7 +176,7 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime">
               <tr *ngFor="let teacher of selectedExemptedTeachers;let i=index">
                 <td>{{i+1}}</td>
                 <td>{{teacher.teacherName}}</td>
-                <td>{{teacher.reason}}</td>
+                <td>{{teacher.exceptionReason}}</td>
                 <td>{{teacher.inTime}} - {{teacher.outTime}}</td>
               </tr>
             </tbody>

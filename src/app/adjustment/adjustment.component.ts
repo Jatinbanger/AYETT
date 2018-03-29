@@ -28,12 +28,14 @@ export class AdjustmentComponent implements OnInit {
   public addAdjustment = 'active';
   public addException = '';
   public summary = '';
+  public mainTeacherList : TeacherList[] = []
   
 
   constructor(public router: Router, public http : HttpClient, public serviceObj :ServiceService) {
     this.serviceObj.getTeachersList().subscribe((data: TeacherList[]) => {
       this.teacherList = [];
       this.teacherList = data;
+      this.mainTeacherList = this.teacherList;
       this.removeSavedTeachers(); 
     });
     this.serviceObj.getReasonList().subscribe((data: Reason[]) => {
@@ -47,7 +49,7 @@ export class AdjustmentComponent implements OnInit {
 
   ngOnInit() {
 
-
+    
     this.addAdjustments = false;
     this.confirmationSummary = true;
     this.exceptionTab = true;
@@ -104,7 +106,18 @@ export class AdjustmentComponent implements OnInit {
     this.exceptionTab = true;
     this.addAdjustment = 'active';
     this.addException = '';
-    this.summary = '';
+    this.summary = ''
+    
+    if (this.selectedExemptedTeachers.length > 0) {
+
+      this.getTeachersList();
+
+    } else {
+
+      this.mainTeacherList = this.teacherList;
+
+    }
+   
 
   }
 
@@ -130,6 +143,19 @@ export class AdjustmentComponent implements OnInit {
     this.addException = '';
     this.summary = 'active';
 
+
+  }
+
+  getTeachersList() {
+    
+    this.mainTeacherList = [];
+    for (let i = 0 ; i < this.teacherList.length ; i++) {
+
+      if (!(this.selectedExemptedTeachers.indexOf(this.teacherList[i]) > -1)) {
+        this.mainTeacherList.push(this.teacherList[i]);
+      } 
+
+    }
 
   }
 
@@ -177,7 +203,7 @@ export class AdjustmentComponent implements OnInit {
       const tempTeacher = new AdjustmentSend();
       tempTeacher._id = teacher._id;
       tempTeacher.type = teacher.part;
-      tempTeacher.reason = teacher.reason;
+      tempTeacher.reason = teacher.absentReason;
       tempTeacher.startTime = teacher.inTime;
       tempTeacher.endTime = teacher.outTime;
       selectedAbsentTeachers.push(tempTeacher);
@@ -187,7 +213,7 @@ export class AdjustmentComponent implements OnInit {
       const teacher = this.selectedExemptedTeachers[k]
       const tempTeacher = new AdjustmentSend();
       tempTeacher._id = teacher._id;
-      tempTeacher.reason = teacher.reason;
+      tempTeacher.reason = teacher.exceptionReason;
       tempTeacher.startTime = teacher.inTime;
       tempTeacher.endTime = teacher.outTime;
       exemptedTeachersList.push(tempTeacher);
@@ -274,13 +300,13 @@ export class AdjustmentComponent implements OnInit {
   moreDetails(teacher) {
     
     if (teacher.reasonObj.type === 'parts') {
-      teacher.reason = teacher.reasonObj.reason;
+      teacher.absentReason = teacher.reasonObj.reason;
       teacher.type = teacher.reasonObj.type;
       teacher.isParts = true;
       teacher.isTime = false;
 
     } else if (teacher.reasonObj.type === 'time'){
-      teacher.reason = teacher.reasonObj.reason;
+      teacher.absentReason = teacher.reasonObj.reason;
       teacher.type = teacher.reasonObj.type;
       teacher.isTime = true;
       teacher.isParts = false;

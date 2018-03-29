@@ -27,6 +27,8 @@ export class ViewAdjustmentsComponent implements OnInit {
       this.serviceObj.previousAdjustment = previousAdjustmentData;
       let adjustedAdjustmentMap = [];
       let failedAdjustmentMap = [];
+      this.serviceObj.successfullAdjustments = [];
+      this.serviceObj.failedAdjustments = [];
       if (this.serviceObj.previousAdjustment) {
         this.serviceObj.haveAdjustments = true;
         if (this.serviceObj.previousAdjustment.adjustmentList) {
