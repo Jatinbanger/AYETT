@@ -48,6 +48,7 @@ export class EditAdjustmentsComponent implements OnInit {
 
       alert(response['status']);
       this.serviceObj.haveAdjustments = false;
+      this.serviceObj.onEdit= false;
       this.router.navigate(['home']);
 
     })
