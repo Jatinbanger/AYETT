@@ -57,9 +57,8 @@
 
         </div>
         <div *ngIf="teacher.isTime" >
-          In Time:  <input type="time" [(ngModel)]="teacher.inTime"  >
-          Out Time: <input type="time" [(ngModel)] ="teacher.outTime">
-
+            <label class="radio-inline">In Time: <input type="time" [(ngModel)]="teacher.inTime"  ></label>
+            <label class="radio-inline">Out Time: <input type="time" [(ngModel)] ="teacher.outTime"></label>
         </div>
       </td>
       </tr>
@@ -104,8 +103,11 @@
 </td>
 <td>
 <div >
-In Time:  <input type="time" [(ngModel)]="teacher.inTime"  >
-Out Time: <input type="time" [(ngModel)] ="teacher.outTime">
+  <label class="radio-inline">In Time: <input type="time" [(ngModel)]="teacher.inTime"  ></label>
+  <label class="radio-inline">Out Time: <input type="time" [(ngModel)] ="teacher.outTime"></label>
+<!-- 
+  In Time:  <input type="time" [(ngModel)]="teacher.inTime"  >
+Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
 </div>
 </td>
 </tr>
