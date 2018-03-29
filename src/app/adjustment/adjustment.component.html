@@ -192,7 +192,7 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
           </div>
           <br>
           <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="initiateAdjustments()" *ngIf="!serviceObj.onEdit">Confirm</button>
+          <button type="button" class="btn btn-primary btn-block" (click)="initiateAdjustments()" *ngIf="!serviceObj.onEdit" [disabled]="(selectedTeachers.length > 0)? false: true ">Confirm</button>
           <button type="button" class="btn btn-primary btn-block" (click)="saveForEdit()" *ngIf="serviceObj.onEdit">Add </button>
   </div>
 
