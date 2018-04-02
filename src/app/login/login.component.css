@@ -96,6 +96,14 @@ select.form-control:focus {
   box-shadow: none;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+input {
+  font-size: 26px;
+}
+
 /**************************
   DEFAULT BOOTSTRAP STYLES
 **************************/
