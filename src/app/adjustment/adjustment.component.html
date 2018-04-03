@@ -18,13 +18,16 @@
           <a class="nav-link {{summary}}" (click)="goToSummary()">Summary</a>
         </li>
       </ul>
+
   <div [hidden]="addAdjustments">
+   
     <br>
         <div class="form-group">
                 <label for="usr">Search:</label>
                 <input type="text" class="form-control" id="usr" [(ngModel)]="searchTextAdj">
               </div>
               <br><br>
+              <div class="panel">
               <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -65,7 +68,7 @@
      
     </tbody>
   </table>
-
+</div>
   <button type="button" class="btn btn-primary btn-sm btn-block" (click)="goTOSelectExceptions()">Next Step</button>
   <br>
 </div>
@@ -77,15 +80,14 @@
     <input type="text" class="form-control" id="usr" [(ngModel)]="searchTextExc">
   </div>
   <br><br>
-    <br><br>
-
+    <div class="panel">
     <table class="table">
 <thead class="thead-dark">
 <tr>
-<th>Select</th>
-<th>Teacher Name</th>
-<th>Reason</th>
-<th>More Details</th>
+    <th width="5%">Select</th>
+    <th width="20%">Teacher Name</th>
+    <th width="30%">Reason</th>
+    <th width="50%">More Details</th>
 </tr>
 </thead>
 <tbody>
@@ -114,7 +116,7 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
 
 </tbody>
 </table>
-
+</div>
 <button type="button" class="btn btn-primary btn-sm btn-block" (click)="goToSummary()">Next Step</button>
 <br>
 
@@ -124,12 +126,14 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
 
   <div  [hidden]="confirmationSummary">
     <br><br>
+    
     <h3>Absent Teachers</h3>
 
-      <div class="table-responsive-sm">          
+      <div class="table">          
           <table class="table">
             <thead>
               <tr>
+                 
                 <th>#</th>
                 <th>Teacher</th>
                 <th>Reason</th>
@@ -163,7 +167,7 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
           <br><br>
           <h3>Exception Teachers</h3>
 
-      <div class="table-responsive-sm">          
+      <div class="table">          
           <table class="table">
             <thead>
               <tr>
@@ -185,11 +189,10 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
           </table>
           <div class="btn-group">
               <button type="button" class="btn"  (click)="goTOSelectExceptions()">Edit</button>
-           
-              
             </div>
 
-          </div>
+     
+        </div>
           <br>
           <br>
           <button type="button" class="btn btn-primary btn-block" (click)="initiateAdjustments()" *ngIf="!serviceObj.onEdit" [disabled]="(selectedTeachers.length > 0)? false: true ">Confirm</button>

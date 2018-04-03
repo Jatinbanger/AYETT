@@ -9,3 +9,9 @@ td {
     text-align: center;
 
 }
+
+.panel{
+    overflow-y: scroll;
+    float:left;
+    height:calc(65vh - 40px);
+    }
