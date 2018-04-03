@@ -68,8 +68,8 @@
      
     </tbody>
   </table>
-</div>
-  <button type="button" class="btn btn-primary btn-sm btn-block" (click)="goTOSelectExceptions()">Next Step</button>
+</div><br><br>
+  <button type="button" class="btn btn-primary btn-sm gradient btn-block" (click)="goTOSelectExceptions()">Next Step</button>
   <br>
 </div>
 <!-- Exceptions -->
@@ -116,8 +116,8 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
 
 </tbody>
 </table>
-</div>
-<button type="button" class="btn btn-primary btn-sm btn-block" (click)="goToSummary()">Next Step</button>
+</div><br>
+<button type="button" class="btn btn-primary btn-sm gradient btn-block" (click)="goToSummary()">Next Step</button>
 <br>
 
 </div>
@@ -195,8 +195,8 @@ Out Time: <input type="time" [(ngModel)] ="teacher.outTime"> -->
         </div>
           <br>
           <br>
-          <button type="button" class="btn btn-primary btn-block" (click)="initiateAdjustments()" *ngIf="!serviceObj.onEdit" [disabled]="(selectedTeachers.length > 0)? false: true ">Confirm</button>
-          <button type="button" class="btn btn-primary btn-block" (click)="saveForEdit()" *ngIf="serviceObj.onEdit">Add </button>
+          <button type="button" class="btn btn-primary btn-lg gradient btn-block" (click)="initiateAdjustments()" *ngIf="!serviceObj.onEdit" [disabled]="(selectedTeachers.length > 0)? false: true ">Confirm</button>
+          <button type="button" class="btn btn-primary btn-lg gradient btn-block" (click)="saveForEdit()" *ngIf="serviceObj.onEdit">Add </button>
   </div>
 
 </div>
